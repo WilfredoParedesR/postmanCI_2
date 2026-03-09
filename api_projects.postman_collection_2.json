@@ -1,0 +1,312 @@
+{
+  "info": {
+    "_postman_id": "94e5eb33-5d11-4250-b8d6-1ae687f2b10f",
+    "name": "Project_2",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "11693135",
+    "_collection_link": "https://go.postman.co/collection/11693135-94e5eb33-5d11-4250-b8d6-1ae687f2b10f?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Crear New Item",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var response = pm.response.json();\r",
+              "pm.collectionVariables.set(\"ITEM_ID\", response.Id);\r",
+              "\r",
+              "pm.test(\"Verify Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Verify Project Name\", function () {\r",
+              "    var jsonData = pm.response.json();\r",
+              "    pm.expect(jsonData.Content).to.eql(\"Item Wilfredo\");\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Verify Project Checked\", function () {\r",
+              "    var jsonData = pm.response.json();\r",
+              "    pm.expect(jsonData.Checked).to.eql(false);\r",
+              "});\r",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "password",
+              "value": "Shivi2026$",
+              "type": "string"
+            },
+            {
+              "key": "username",
+              "value": "wilfredoparedes4@gmail.com",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n\t\"Content\" : \"Item Wilfredo\"\r\n}  ",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://todo.ly/api/items.json",
+          "protocol": "https",
+          "host": [
+            "todo",
+            "ly"
+          ],
+          "path": [
+            "api",
+            "items.json"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Editar Item",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Verify Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Verify Project Name\", function () {\r",
+              "    var jsonData = pm.response.json();\r",
+              "    pm.expect(jsonData.Content).to.eql(\"Item Wilfredo Actualizado\");\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Verify Project Icon\", function () {\r",
+              "    var jsonData = pm.response.json();\r",
+              "    pm.expect(jsonData.Checked).to.eql(true);\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "password",
+              "value": "Shivi2026$",
+              "type": "string"
+            },
+            {
+              "key": "username",
+              "value": "wilfredoparedes4@gmail.com",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"Content\": \"Item Wilfredo Actualizado\",\r\n    \"Checked\": \"true\"\r\n}\r\n\r\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://todo.ly/api/items/{{ITEM_ID}}.json",
+          "protocol": "https",
+          "host": [
+            "todo",
+            "ly"
+          ],
+          "path": [
+            "api",
+            "items",
+            "{{ITEM_ID}}.json"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Leer Items",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Verify Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Verify Project Name\", function () {\r",
+              "    var jsonData = pm.response.json();\r",
+              "    pm.expect(jsonData.Content).to.eql(\"Item Wilfredo Actualizado\");\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Verify Project Checked\", function () {\r",
+              "    var jsonData = pm.response.json();\r",
+              "    pm.expect(jsonData.Checked).to.eql(true);\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "password",
+              "value": "Shivi2026$",
+              "type": "string"
+            },
+            {
+              "key": "username",
+              "value": "wilfredoparedes4@gmail.com",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://todo.ly/api/items/{{ITEM_ID}}.json",
+          "protocol": "https",
+          "host": [
+            "todo",
+            "ly"
+          ],
+          "path": [
+            "api",
+            "items",
+            "{{ITEM_ID}}.json"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Eliminar Item",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Verify Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Verify Project Name\", function () {\r",
+              "    var jsonData = pm.response.json();\r",
+              "    pm.expect(jsonData.Content).to.eql(\"Item Wilfredo Actualizado\");\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Verify Project Checked\", function () {\r",
+              "    var jsonData = pm.response.json();\r",
+              "    pm.expect(jsonData.Checked).to.eql(true);\r",
+              "});\r",
+              "pm.test(\"Verify Delete Project\", function () {\r",
+              "    var jsonData = pm.response.json();\r",
+              "    pm.expect(jsonData.Deleted).to.eql(true);\r",
+              "});\r",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "password",
+              "value": "Shivi2026$",
+              "type": "string"
+            },
+            {
+              "key": "username",
+              "value": "wilfredoparedes4@gmail.com",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "https://todo.ly/api/items/{{ITEM_ID}}.json",
+          "protocol": "https",
+          "host": [
+            "todo",
+            "ly"
+          ],
+          "path": [
+            "api",
+            "items",
+            "{{ITEM_ID}}.json"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "ITEM_ID",
+      "value": "",
+      "type": "default"
+    }
+  ]
+}
